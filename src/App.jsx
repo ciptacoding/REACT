@@ -1,7 +1,8 @@
 // Component Button
 const Button = (props) => {
    // destructuring obj, dan set default value pada setiap property.
-   const { children = "....", variant = "bg-black" } = props;
+   // property children menangkap semua element yang ada didalam parentnya.
+   const { children = "....", variant = "bg-gray-400" } = props;
    return (
       <button className={`px-6 h-10 font-semibold rounded-md ${variant}`}>
          {children}
@@ -20,6 +21,7 @@ function App() {
                <Button variant="bg-sky-700 text-white">Login</Button>
                <Button variant="bg-green-700 text-white">Register</Button>
                <Button variant="bg-pink-700 text-white">Logout</Button>
+               <Button></Button> {/* Display default value */}
             </div>
          </div>
       </>
