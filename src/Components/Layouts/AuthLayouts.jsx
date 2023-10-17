@@ -20,14 +20,14 @@ const AuthLayouts = (props) => {
                   : "Already have an account? "}
 
                {type === "login" && (
-                  <Link to="/login">
-                     <span className="text-sky-500">Sign in</span>
+                  <Link to="/register">
+                     <span className="text-sky-500">Sign up</span>
                   </Link>
                )}
 
                {type === "register" && (
-                  <Link to="/register">
-                     <span className="text-sky-500">Sign up</span>
+                  <Link to="/login">
+                     <span className="text-sky-500">Sign in</span>
                   </Link>
                )}
                {/* navigation rendering auth links */}
