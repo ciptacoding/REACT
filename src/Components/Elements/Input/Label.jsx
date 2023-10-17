@@ -1,3 +1,4 @@
+// Label.jsx
 const Label = (props) => {
    const { htmlFor, children } = props;
 

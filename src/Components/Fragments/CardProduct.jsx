@@ -23,11 +23,11 @@ const CardHeader = (props) => {
 };
 
 const CardBody = (props) => {
-   const { title, location, price, sold } = props;
+   const { name, location, price, sold } = props;
    return (
       <div>
          <div className="px-3 text-sm pb-2">
-            <a href="#">{title}</a>
+            <a href="#">{name}</a>
             <p className="text-xs text-gray-400 pt-1">{location}</p>
          </div>
          <div className="px-3 pb-2 flex justify-between items-center gap-2">

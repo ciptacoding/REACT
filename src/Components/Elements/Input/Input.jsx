@@ -1,3 +1,4 @@
+// Input.jsx
 const Input = (props) => {
    const { type, placeholder, id } = props;
    return (
