@@ -13,6 +13,11 @@ const IndexPage = () => {
                   Sign In
                </Button>
             </Link>
+            <Link to="/products">
+               <Button variant="bg-emerald-500 text-gray-300 hover:bg-emerald-600 hover:text-gray-400">
+                  Products
+               </Button>
+            </Link>
             <Link to="/register">
                <Button variant="bg-pink-700 text-gray-300 hover:bg-pink-700 hover:text-gray-400">
                   Sign Up
