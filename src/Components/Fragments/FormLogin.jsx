@@ -9,6 +9,7 @@ const FormLogin = () => {
             htmlFor="email"
             type="email"
             placeholder="example@mail.com"
+            name="email"
          />
 
          <FormInput
@@ -16,6 +17,7 @@ const FormLogin = () => {
             htmlFor="password"
             type="password"
             placeholder="password@mail.com"
+            name="password"
          />
 
          <Button variant="bg-sky-700 text-gray-300 w-full hover:bg-sky-800 hover:text-gray-400 mb-4">
