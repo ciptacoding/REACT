@@ -90,8 +90,8 @@ const ProductsPage = () => {
                </Button>
             </div>
 
-            <div className="flex mb-8 space-x-8">
-               <div className="w-3/5">
+            <div className="flex mb-8 space-x-8 flex-col lg:flex-row">
+               <div className="w-full lg:w-3/5">
                   <h1 className="text-3xl font-bold text-gray-300 text-center mb-8 pt-5">
                      Products
                   </h1>
@@ -113,7 +113,7 @@ const ProductsPage = () => {
                      ))}
                   </div>
                </div>
-               <div className="w-2/5">
+               <div className="w-full lg:w-2/5">
                   <h1 className="text-3xl font-bold text-gray-300 ml-5 mb-8 pt-5">
                      Carts
                   </h1>
