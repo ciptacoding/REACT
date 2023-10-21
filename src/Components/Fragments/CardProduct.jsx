@@ -3,7 +3,7 @@ import Button from "../Elements/Button/Index";
 const CardProduct = (props) => {
    const { children } = props;
    return (
-      <div className="text-gray-300 max-w-[200px] bg-slate-700 rounded-md shadow-slate-900 shadow-md">
+      <div className="text-gray-300 w-[150px] lg:w-[200px] bg-slate-700 rounded-md shadow-slate-900 shadow-md">
          {children}
       </div>
    );
