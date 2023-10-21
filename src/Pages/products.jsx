@@ -1,53 +1,76 @@
 import Button from "../Components/Elements/Button/Index";
 import CardProduct from "../Components/Fragments/CardProduct";
 import MainLayouts from "../Components/Layouts/MainLayouts";
+import { useState } from "react";
 
 const products = [
    {
       id: 1,
-      image: "./images/shoes2.jpg",
-      name: "Sepatu keren banget 2023",
+      image: "./images/shoes1.jpg",
+      name: "Sepatu Nike",
       location: "Jawa Barat",
-      price: "1.500.000",
+      price: 2000000,
       sold: 700,
    },
    {
       id: 2,
       image: "./images/shoes2.jpg",
-      name: "Sepatu keren sedunia",
+      name: "Sepatu Adidas",
       location: "Denpasar",
-      price: "1.200.000",
+      price: 1500000,
       sold: 354,
    },
    {
       id: 3,
-      image: "./images/shoes2.jpg",
-      name: "Sepatu keren sedunia",
-      location: "Denpasar",
-      price: "1.200.000",
-      sold: 354,
+      image: "./images/shoes3.jpg",
+      name: "Sepatu Ventela",
+      location: "Jogjakarta",
+      price: 700000,
+      sold: 665,
    },
    {
       id: 4,
-      image: "./images/shoes2.jpg",
-      name: "Sepatu keren sedunia",
-      location: "Denpasar",
-      price: "1.200.000",
-      sold: 354,
+      image: "./images/shoes4.jpg",
+      name: "Sepatu Air Jordan",
+      location: "Jawa Tengah",
+      price: 1250000,
+      sold: 406,
    },
    {
       id: 5,
-      image: "./images/shoes2.jpg",
-      name: "Sepatu keren sedunia",
-      location: "Denpasar",
-      price: "1.200.000",
-      sold: 354,
+      image: "./images/shoes5.jpg",
+      name: "Sepatu Vans",
+      location: "Jawa Timur",
+      price: 850000,
+      sold: 157,
+   },
+   {
+      id: 6,
+      image: "./images/shoes6.jpeg",
+      name: "Sepatu Airmax",
+      location: "Jawa Jakarta",
+      price: 950000,
+      sold: 454,
    },
 ];
 
 const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
+   const [cart, setCart] = useState([]);
+
+   const handleAddToCart = (productId) => {
+      if (cart.find((item) => item.id === productId)) {
+         setCart(
+            cart.map((item) =>
+               item.id === productId ? { ...item, qty: item.qty + 1 } : item
+            )
+         );
+      } else {
+         setCart([...cart, { id: productId, qty: 1 }]);
+      }
+   };
+
    const handleLogout = () => {
       localStorage.removeItem("email");
       localStorage.removeItem("password");
@@ -56,26 +79,85 @@ const ProductsPage = () => {
 
    return (
       <>
-         <div className="flex justify-end pt-5 pr-10 items-center gap-5">
-            <span className="text-gray-300 font-semibold">{email}</span>
-            <Button variant="bg-pink-600 text-gray-300" onClick={handleLogout}>
-               Logout
-            </Button>
-         </div>
          <MainLayouts title="Products">
-            <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 justify-items-center gap-4">
-               {products.map((product) => (
-                  <CardProduct key={product.id}>
-                     <CardProduct.Header image={product.image} />
-                     <CardProduct.Body
-                        name={product.name}
-                        location={product.location}
-                        price={product.price}
-                        sold={product.sold}
-                     />
-                     <CardProduct.Footer />
-                  </CardProduct>
-               ))}
+            <div className="flex justify-end pt-5 items-center gap-5">
+               <span className="text-gray-300 font-semibold">{email}</span>
+               <Button
+                  variant="bg-pink-600 text-gray-300"
+                  onClick={handleLogout}
+               >
+                  Logout
+               </Button>
+            </div>
+
+            <div className="flex mb-8 space-x-8">
+               <div className="w-3/5">
+                  <h1 className="text-3xl font-bold text-gray-300 text-center mb-8 pt-5">
+                     Products
+                  </h1>
+                  <div className="flex flex-wrap gap-6">
+                     {products.map((product) => (
+                        <CardProduct key={product.id}>
+                           <CardProduct.Header image={product.image} />
+                           <CardProduct.Body
+                              name={product.name}
+                              location={product.location}
+                              price={product.price}
+                              sold={product.sold}
+                           />
+                           <CardProduct.Footer
+                              handleAddToCart={handleAddToCart}
+                              id={product.id}
+                           />
+                        </CardProduct>
+                     ))}
+                  </div>
+               </div>
+               <div className="w-2/5">
+                  <h1 className="text-3xl font-bold text-gray-300 ml-5 mb-8 pt-5">
+                     Carts
+                  </h1>
+                  <table className="text-left table-auto border-separate border-spacing-x-5 text-gray-300">
+                     <thead>
+                        <tr>
+                           <th>Product</th>
+                           <th>Price</th>
+                           <th>Quantity</th>
+                           <th>Total</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {cart.map((item) => {
+                           const product = products.find(
+                              (product) => product.id === item.id
+                           );
+                           return (
+                              <tr key={item.id}>
+                                 <td>{product.name}</td>
+                                 <td>
+                                    Rp.{" "}
+                                    {product.price.toLocaleString("id-ID", {
+                                       styles: "currency",
+                                       currency: "IDR",
+                                    })}
+                                 </td>
+                                 <td>{item.qty}</td>
+                                 <td>
+                                    Rp.{" "}
+                                    {(item.qty * product.price).toLocaleString(
+                                       "id-ID",
+                                       {
+                                          styles: "currency",
+                                          currency: "IDR",
+                                       }
+                                    )}
+                                 </td>
+                              </tr>
+                           );
+                        })}
+                     </tbody>
+                  </table>
+               </div>
             </div>
          </MainLayouts>
       </>
