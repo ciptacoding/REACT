@@ -1,7 +1,7 @@
 import Button from "../Components/Elements/Button/Index";
 import CardProduct from "../Components/Fragments/CardProduct";
 import MainLayouts from "../Components/Layouts/MainLayouts";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const products = [
    {
@@ -93,6 +93,15 @@ const ProductsPage = () => {
       window.location.href = "/login";
    };
 
+   const totalPriceRef = useRef(null);
+   useEffect(() => {
+      if (cart.length > 0) {
+         totalPriceRef.current.style.display = "table-row";
+      } else {
+         totalPriceRef.current.style.display = "none";
+      }
+   }, [cart]);
+
    return (
       <>
          <MainLayouts title="Products">
@@ -172,7 +181,7 @@ const ProductsPage = () => {
                            );
                         })}
 
-                        <tr>
+                        <tr ref={totalPriceRef}>
                            <td colSpan={3}>
                               <b>Total Price</b>
                            </td>
