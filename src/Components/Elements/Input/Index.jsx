@@ -1,8 +1,9 @@
 // Index.jsx
+import { forwardRef } from "react";
 import Input from "./Input";
 import Label from "./Label";
 
-const FormInput = (props) => {
+const FormInput = forwardRef((props, ref) => {
    const { label, htmlFor, type, placeholder, name } = props;
 
    return (
@@ -13,9 +14,10 @@ const FormInput = (props) => {
             id={htmlFor}
             placeholder={placeholder}
             name={name}
+            ref={ref}
          />
       </div>
    );
-};
+});
 
 export default FormInput;
